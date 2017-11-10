@@ -29,8 +29,13 @@
       buttons.nextYear.removeClass('disabled');
       
       data.year--;
-      if(data.minYear && data.minYear > data.year) return $(this).addClass('disabled');
-      else $(this).removeClass('disabled');
+      if(data.minYear && data.minYear > data.year) {
+      	data.year++;
+        return $(this).addClass('disabled');
+      }
+      else {
+      	$(this).removeClass('disabled');
+      }
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
@@ -45,8 +50,13 @@
       buttons.prevYear.removeClass('disabled');
       
       data.year++;
-      if(data.maxYear && data.maxYear < data.year) return $(this).addClass('disabled');
-      else $(this).removeClass('disabled');
+      if(data.maxYear && data.maxYear < data.year) {
+        data.year--;
+        return $(this).addClass('disabled');
+      }
+      else {
+      	$(this).removeClass('disabled');
+      }
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
