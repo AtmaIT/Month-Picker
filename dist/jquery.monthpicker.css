@@ -14,11 +14,26 @@
   display: none;
   position: absolute;
   left: 0;
-  top: 100%;
+  top: calc(100% + 10px);
   width: 100%;
-  background: #eee;
+  min-width: 235px;
+  background: #FFFFFF;
   border: 1px solid #DDD;
+  box-shadow: 0 0 8px -3px rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
   padding: 0 10px 10px 10px;
+  box-sizing: border-box;
+}
+.mp-input-container > .mp-container:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #CCC;
 }
 
 .mp-header {
@@ -28,23 +43,29 @@
 }
 .mp-header .mp-title {
   line-height: 30px;
+  font-size: 20px;
   color: #666;
 }
 .mp-header .mp-header-button {
   border: none;
   outline: none;
-  background: #FFF;
+  background: #EEE;
   color: #666;
   font-weight: bold;
+  font-size: 18px;
   height: 30px;
   width: 30px;
   line-height: 30px;
   text-align: center;
   cursor: pointer;
+  border-radius: 3px;
+}
+.mp-header .mp-header-button.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 .mp-header .mp-header-button:hover {
-  background: #5ed9ff;
-  color: #FFF;
+  background: #DDD;
 }
 .mp-header .prev {
   float: left;
@@ -69,6 +90,7 @@
   line-height: 30px;
   text-align: center;
   cursor: pointer;
+  border-radius: 3px;
 }
 .mp-buttons-container .mp-month-button.active,
 .mp-buttons-container .mp-month-button:hover {

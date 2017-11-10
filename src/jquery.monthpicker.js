@@ -17,8 +17,8 @@
   function genMpHeader(currDate) {
     var header = $('<div class="mp-header"></div>');    
     var buttons = {
-    	prevYear: $('<button type="button" class="mp-header-button prev"> < </div>'),
-      nextYear: $('<button type="button" class="mp-header-button next"> > </div>')
+    	prevYear: $('<button type="button" class="mp-header-button prev"> &laquo; </div>'),
+      nextYear: $('<button type="button" class="mp-header-button next"> &raquo; </div>')
 		};
     
     buttons.prevYear.click(function(e) {
@@ -26,7 +26,11 @@
       var title = container.find('.mp-title');
       var data = container.data('month-picker');
       
+      buttons.nextYear.removeClass('disabled');
+      
       data.year--;
+      if(data.minYear && data.minYear > data.year) return $(this).addClass('disabled');
+      else $(this).removeClass('disabled');
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
@@ -38,7 +42,11 @@
       var title = container.find('.mp-title');
       var data = container.data('month-picker');
       
+      buttons.prevYear.removeClass('disabled');
+      
       data.year++;
+      if(data.maxYear && data.maxYear < data.year) return $(this).addClass('disabled');
+      else $(this).removeClass('disabled');
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
@@ -126,6 +134,8 @@
   }
 
   $.fn.monthPicker = function(options) {
+  	if(options.monthLabels && options.monthLabels.length == 12) months = options.monthLabels;
+  
     var inputElement = this;
     var currDate = new Date();
     var inputContainer = $('<div class="mp-input-container"></div>');
@@ -135,7 +145,9 @@
     
     containerElement.data('month-picker', {
     	year: currDate.getFullYear(),
-      month: currDate.getMonth()
+      month: currDate.getMonth(),
+      minYear: options.minYear || null,
+      maxYear: options.maxYear || null
     });
     
     if(options.icon) inputContainer.append('<i class="' + options.icon + '"></i>')
