@@ -1,0 +1,86 @@
+/** Plugin styles **/
+.mp-input-container {
+  display: inline-block;
+  position: relative;
+  
+  i {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #666;
+  }
+}
+.mp-input-container > .mp-container {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  
+  background: #eee;
+  border: 1px solid #DDD;
+  padding: 0 10px 10px 10px;
+}
+
+.mp-header {
+  padding: 10px 0 10px;
+  border-bottom: 1px solid #DDD;
+  text-align: center;
+  
+  .mp-title {
+    line-height: 30px;
+    color: #666;
+  }
+  
+  .mp-header-button {
+    border: none;
+    outline: none;
+    background: #FFF;
+    color: #666;
+    font-weight: bold;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .mp-header-button:hover {
+    background: #5ed9ff;
+    color: #FFF;
+  }
+  
+  .prev {
+    float: left;
+  }
+  
+  .next {
+    float: right;
+  }
+}
+
+.mp-buttons-container {
+  font-size: 0;
+  margin-top: 10px;
+  
+  .mp-month-button {
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background: #FFF;
+    color: #666;
+    height: 30px;
+    width: calc(33% - 10px);
+    margin: 2.5px 5px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .mp-month-button.active,
+  .mp-month-button:hover {
+    background: #5ed9ff;
+    color: #FFF;
+  }
+
+}
