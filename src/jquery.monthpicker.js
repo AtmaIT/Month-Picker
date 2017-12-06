@@ -144,6 +144,7 @@
   }
 
   $.fn.monthPicker = function(options) {
+    options = options || {};
   	if(options.monthLabels && options.monthLabels.length == 12) months = options.monthLabels;
   
     var inputElement = this;

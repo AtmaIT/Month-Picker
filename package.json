@@ -1,0 +1,25 @@
+{
+  "name": "monthpicker",
+  "version": "1.0.0",
+  "description": "MonthPicker is a jquery plugin for create month calendary picker",
+  "main": "dist/jquery.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusBordin/Month-Picker.git"
+  },
+  "author": "Matheus Bordin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusBordin/Month-Picker/issues"
+  },
+  "homepage": "https://github.com/MatheusBordin/Month-Picker#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-sass": "^3.1.0"
+  }
+}
