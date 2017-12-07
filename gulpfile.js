@@ -5,7 +5,7 @@ const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', () => {
+gulp.task('build', () => {
     gulp.src('./src/**/*.js')
         .pipe(jsmin())
         .pipe(rename({suffix: '.min'}))
@@ -17,3 +17,7 @@ gulp.task('default', () => {
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist'));
 });
+
+gulp.task('dev', () => {
+    gulp.watch('./src/**/*', ['build']);
+})

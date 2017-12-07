@@ -26,19 +26,19 @@
       var title = container.find('.mp-title');
       var data = container.data('month-picker');
       
-      buttons.nextYear.removeClass('disabled');
-      
+      buttons.nextYear.prop('disabled', false);
       data.year--;
-      if(data.minYear && data.minYear > data.year) {
-      	data.year++;
-        return $(this).addClass('disabled');
+            
+      if(data.minYear && data.minYear == data.year) {
+        $(this).prop('disabled', true);
       }
       else {
-      	$(this).removeClass('disabled');
+      	$(this).prop('disabled', false);
       }
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
+      disableMonthButtons(container.find('.mp-month-button'), data);
     });
     
     buttons.nextYear.click(function(e) {
@@ -47,19 +47,19 @@
       var title = container.find('.mp-title');
       var data = container.data('month-picker');
       
-      buttons.prevYear.removeClass('disabled');
-      
+      buttons.prevYear.prop('disabled', false);
       data.year++;
-      if(data.maxYear && data.maxYear < data.year) {
-        data.year--;
-        return $(this).addClass('disabled');
+
+      if(data.maxYear && data.maxYear == data.year) {
+        $(this).prop('disabled', true);
       }
       else {
-      	$(this).removeClass('disabled');
-      }
+      	$(this).prop('disabled', false);
+      }      
       
       title.text(data.year);
       container.data('month-picker', data).find('.active').removeClass('active');
+      disableMonthButtons(container.find('.mp-month-button'), data);
     });
     
     var headerTitle = $('<span class="mp-title"></span>').text(currDate.getFullYear());
@@ -79,6 +79,16 @@
     })
     return buttonsContainer;
   }
+
+  function disableMonthButtons(buttons, options) {
+    buttons.each(function() {
+      var self = $(this);
+      var month = self.data('month') + 1;
+      if(options.minMonth && options.minYear && options.year == options.minYear && month <= options.minMonth) self.prop('disabled', true);
+      else if(options.maxMonth && options.maxYear && options.year == options.maxYear && month >= options.maxMonth) self.prop('disabled', true);
+      else self.prop('disabled', false);
+    });
+  }
   
   function setEvents(element, container, options) {
   	if($.fn.mask) element.mask('00/0000')
@@ -93,6 +103,7 @@
     
     element.change(function() {
     	var currContainer = $(this).siblings('.mp-container');
+      var data = currContainer.data('month-picker');
     	var value = $(this).val().split('/');
       var month = parseInt(value[0]) - 1;
       var year = value[1];
@@ -103,10 +114,9 @@
       if(month < 0) month = 0;
       
       if(year.length < 4) return;
-      currContainer.data('month-picker', {
-      	year: year,
-        month: month
-      });
+      data.year = year;
+      data.month = month;
+      currContainer.data('month-picker', data);
       
       currContainer.find('.mp-month-button').each(function() {
       	var self = $(this);
@@ -120,6 +130,7 @@
       month = month + 1;
       var monthTxt = month < 10 ? '0' + month.toString() : month.toString();
       element.val(monthTxt + '/' + year);
+      disableMonthButtons(currContainer.find('.mp-month-button'), data);
     });
     
     $('body').click(function() {
@@ -158,7 +169,9 @@
     	year: currDate.getFullYear(),
       month: currDate.getMonth(),
       minYear: options.minYear || null,
-      maxYear: options.maxYear || null
+      minMonth: options.minMonth || null,
+      maxYear: options.maxYear || null,
+      maxMonth: options.maxMonth || null
     });
     
     if(options.icon) inputContainer.append('<i class="' + options.icon + '"></i>')

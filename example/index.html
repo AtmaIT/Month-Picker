@@ -18,7 +18,12 @@
     </div>
 
     <script>
-        $('input').monthPicker();
+        $('input').monthPicker({
+            minYear: 2015,
+            maxYear: 2018,
+            minMonth: 02,
+            maxMonth: 10
+        });
     </script>
 </body>
 </html>

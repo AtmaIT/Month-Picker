@@ -46,9 +46,14 @@
     cursor: pointer;
   }
   
-  .mp-header-button:hover {
+  .mp-header-button:not(:disabled):hover {
     background: #5ed9ff;
     color: #FFF;
+  }
+
+  .mp-header-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
   
   .prev {
@@ -78,10 +83,15 @@
     cursor: pointer;
   }
   
-  .mp-month-button.active,
-  .mp-month-button:hover {
+  .mp-month-button.active:not(:disabled),
+  .mp-month-button:not(:disabled):hover {
     background: #5ed9ff;
     color: #FFF;
+  }
+
+  .mp-month-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
 }
