@@ -18,11 +18,11 @@
     </div>
 
     <script>
+        var current = new Date();
         $('input').monthPicker({
-            minYear: 2015,
-            maxYear: 2018,
-            minMonth: 02,
-            maxMonth: 10
+            minYear: current.getFullYear(),
+            minMonth: current.getMonth() + 1,
+            initialDate: '01/2017'
         });
     </script>
 </body>
