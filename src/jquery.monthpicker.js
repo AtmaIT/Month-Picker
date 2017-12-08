@@ -153,7 +153,7 @@
       if(!value) return false;
 
       element.val(value);
-      if(value.length == 6 + (options.separator ? options.separator.length : 1)) updateDate(element, options);
+      if(value.length == 6 + (options.separator ? options.separator.length : 1)) updateDate(element, options);    
     });
   
   	element.focus(function(e) {
@@ -192,7 +192,7 @@
     var inputElement = this;
     var currDate = new Date();
     var inputContainer = $('<div class="mp-input-container"></div>');
-    var containerElement = $('<div class="mp-container"></div>');
+    var containerElement = $('<div class="mp-container ' + (options.containerClass || '') + '"></div>');
     var headerElement = genMpHeader(currDate);
     var monthButtons = genMonthButtons();
     var data = {
