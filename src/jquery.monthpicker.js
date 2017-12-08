@@ -196,8 +196,8 @@
     var headerElement = genMpHeader(currDate);
     var monthButtons = genMonthButtons();
     var data = {
-    	year: options.initialDate ? parseInt(options.initialDate.split(options.separator)[1]) : currDate.getFullYear(),
-      month: options.initialDate ? parseInt(options.initialDate.split(options.separator)[0]) - 1 : currDate.getMonth(),
+    	year: options.initialDate ? parseInt(options.initialDate.split(options.separator || '/')[1]) : currDate.getFullYear(),
+      month: options.initialDate ? parseInt(options.initialDate.split(options.separator || '/')[0]) - 1 : currDate.getMonth(),
       minYear: options.minYear || null,
       minMonth: options.minMonth || null,
       maxYear: options.maxYear || null,
@@ -217,8 +217,8 @@
     disableYearButtons(headerElement.find('button.prev'), headerElement.find('button.next'), data);
     disableMonthButtons(monthButtons.find('button'), data);
     
-    if(options.initialYear) {
-      inputElement.val(options.initialYear);
+    if(options.initialDate) {
+      inputElement.val(options.initialDate);
       updateDate(inputElement, data);
     }
   }
